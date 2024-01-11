@@ -1,0 +1,51 @@
+
+<form [formGroup]="formulario">
+    
+  <div class="mb-3">
+    <label for="nome" class="form-label">Nome</label>
+    <input type="text" class="form-control" formControlName="nome" [(ngModel)]="nome" name="comentario" required>
+    <div *ngIf="formulario.get('nome')?.errors?.['required'] && formulario.get('nome')?.touched">
+        Nome obrigatório
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="sobrenome" class="form-label">Sobrenome</label>
+    <input type="text" class="form-control" formControlName="sobrenome" [(ngModel)]="sobrenome" name="sobrenome" required>
+    <div *ngIf="formulario.get('sobrenome')?.errors?.['required'] && formulario.get('sobrenome')?.touched">
+      Sobrenome obrigatório
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" class="form-control" formControlName="email"[(ngModel)]="email" required>
+    <div *ngIf="formulario.get('email')?.errors?.['required'] && formulario.get('email')?.touched">
+      Email obrigatório
+    </div>
+    <div *ngIf="formulario.get('email')?.errors?.['email'] && formulario.get('email')?.touched">
+      Email em formato incorreto
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="dataNascimento" formControlName="dataNascimento"class="form-label">Data de Nascimento</label>
+    <input type="date" class="form-control" formControlName="dataNascimento" [(ngModel)]="dataNascimento" name="dataNascimento" required>
+    <div *ngIf="formulario.get('dataNascimento')?.errors?.['required'] && formulario.get('dataNascimento')?.touched">
+      Data de nascimento obrigatória
+    </div>
+  </div>
+  <div>
+    <label for="Escolaridade" formControlName="escolaridade" class="form-label">Escolaridade</label>
+      <select name ="escolaridade" id="nivel_educacional" class="form-control" [(ngModel)]="escolaridade" required>
+        <option value="0" data-description="Fundamental">Fundamental</option>
+        <option value="1" data-description="Infantil">Infantil</option>
+        <option value="2" data-description="Médio">Médio</option>
+        <option value="3" data-description="Superior">Superior</option>
+      </select>
+  </div>
+
+  <button (click)="addUsuario()" *ngIf="usuario.id==0" class="btn btn-primary float-end mt-2">
+    Add
+  </button>
+  <button (click)="updateUsuario()" *ngIf="usuario.id!= 0" class="btn btn-primary">
+    Update
+  </button>
+</form>
